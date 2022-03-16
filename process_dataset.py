@@ -10,7 +10,7 @@ import csv
 import sys
 import os
 
-THREAD_LIMIT = 4
+THREAD_LIMIT = 16
 #create a semaphore so as not to exceed threadlimit
 sem = MP.Semaphore(THREAD_LIMIT)
 
@@ -168,6 +168,7 @@ def main(args):
         print("\n ({0}/{1}) Starting to Process File {2}".format(idx, len(all_pcaps), pcap_file))
         # process_pcap_dataset(pcap_path, csv_path, metadata_file, args["samples"], args["botnets_only"])
         # spawn a new process
+        # https://zetcode.com/python/multiprocessing/
         pcap_process = MP.Process(target=process_pcap_dataset, args=(pcap_path, csv_path, metadata_file, args["samples"], args["botnets_only"]))
         pcap_process.daemon = True # stop the process once the main thread dies
         pcap_process.start()
