@@ -9,11 +9,13 @@ export BOTNETS_DIR 			= $(RAW_DATA_DIR)/botnets
 export P2P_PCAP_DIR 		= $(RAW_DATA_DIR)/p2p
 export P2P_FILES_TXT		= $(P2P_PCAP_DIR)/p2p_dataset.txt
 export PROC_DATA_DIR		= dataset
+export CONVERSATION_DATASET = conversations_dataset
 export P2P_DOWNLOAD_TARGET	= download_p2p_dataset.py
 export DATASET_TARGET 		= process_dataset.py
 export TF_DATASET_TARGET 	= gen_tf_dataset.py
 export TRAIN_TARGET 		= train.py
 export FLOW_STATS_TARGET 	= get_flow_statistics.py
+export CONVERSATIONS_TARGET = process_conversations.py
 
 # data variables
 export STORM_PCAP_DIR 		= $(BOTNETS_DIR)/storm
@@ -93,6 +95,22 @@ zeus-dataset: | $(PROC_DATA_DIR)
 p2p-dataset: | $(PROC_DATA_DIR)
 	python $(DATASET_TARGET) --name p2p --pcapdir $(P2P_PCAP_DIR) --nclasses $(N_CLASSES) --samples $(NCLASS_SAMPLES) --botnets_only 0 \
 				--split $(TRAIN_TEST_SPLIT) --csvdir $(PROC_DATA_DIR) --pkldir $(PROC_DATA_DIR) 
+
+$(CONVERSATION_DATASET):
+	@echo "[LOG] Creating CONVERSATION Directory => $(CONVERSATION_DATASET)"
+	mkdir $(CONVERSATION_DATASET)
+
+waledac-conversation-dataset: | $(CONVERSATION_DATASET)
+	python $(CONVERSATIONS_TARGET) --pcapdir $(WALEDAC_PCAP_DIR) --samples $(NCLASS_SAMPLES) --botnets_only 1 --csvdir $(CONVERSATION_DATASET)
+
+storm-conversation-dataset: | $(CONVERSATION_DATASET)
+	python $(CONVERSATIONS_TARGET) --pcapdir $(STORM_PCAP_DIR) --samples $(NCLASS_SAMPLES) --botnets_only 1 --csvdir $(CONVERSATION_DATASET)
+
+zeus-conversation-dataset: | $(CONVERSATION_DATASET)
+	python $(CONVERSATIONS_TARGET) --pcapdir $(ZEUS_PCAP_DIR) --samples $(NCLASS_SAMPLES) --botnets_only 1 --csvdir $(CONVERSATION_DATASET)
+
+p2p-conversation-dataset: | $(CONVERSATION_DATASET)
+	python $(CONVERSATIONS_TARGET) --pcapdir $(P2P_PCAP_DIR) --samples $(NCLASS_SAMPLES) --botnets_only 0 --csvdir $(CONVERSATION_DATASET)
 
 # train-waledac-model: | $(MODELS_DIR) $(SPATIAL_DIR)
 # 	python $(TRAIN_TARGET) --name $(WALEDAC_DNN_NAME) --arch $(DNN_ARCHITECTURE) --pars $(DNN_LAYER_PARS) --dataset $(PROC_DATA_DIR) --features $(MODEL_FEATURES) \

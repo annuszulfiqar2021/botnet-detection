@@ -177,7 +177,7 @@ def main(args):
     for process in processes:
         while process.is_alive():
             pass
-    build_and_cache_dataset(args)
+    # build_and_cache_dataset(args)
 
 
 if __name__ == "__main__":
@@ -189,6 +189,6 @@ if __name__ == "__main__":
     CLI.add_argument("--botnets_only", type=int)
     CLI.add_argument("--split", type=float)
     CLI.add_argument("--csvdir", type=str)
-    CLI.add_argument("--pkldir", type=str)
+    # CLI.add_argument("--pkldir", type=str)
     args = vars(CLI.parse_args())
     main(args)
