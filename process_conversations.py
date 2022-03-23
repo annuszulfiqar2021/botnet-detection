@@ -12,6 +12,8 @@ import sys
 import os
 
 FIELDS = ["ipv4_src", "ipv4_dst", "num_pkts", "data_volume", "duration", "median_ipd", "isbotnet"]
+P2P_CLASS = 0
+BOTNET_CLASS = 1
 
 def process_pcap_dataset(pcap_file: str, csv_file: str, metadata_file: str, samples: int, botnets_only: int, verbose: int):
     # PcapReader comes from scapy and reads packets iteratively
@@ -58,7 +60,7 @@ def process_pcap_dataset(pcap_file: str, csv_file: str, metadata_file: str, samp
                     # start this flow's empty list of IPDs
                     converstions_ipds[conversation_tuple] = [0]
                     # mark this conversation as botnet (only once!)
-                    botnet_conversations[conversation_tuple]["isbotnet"] = 1
+                    botnet_conversations[conversation_tuple]["isbotnet"] = BOTNET_CLASS
                 else: # packet from a running flow, update it
                     # update data volume
                     botnet_conversations[conversation_tuple]['data_volume'] += len(pkt)
@@ -89,7 +91,7 @@ def process_pcap_dataset(pcap_file: str, csv_file: str, metadata_file: str, samp
                     # start this flow's empty list of IPDs
                     converstions_ipds[conversation_tuple] = [0]
                     # mark this conversation as botnet (only once!)
-                    p2p_conversations[conversation_tuple]["isbotnet"] = 1
+                    p2p_conversations[conversation_tuple]["isbotnet"] = P2P_CLASS
                 else: # packet from a running flow, update it
                     # update data volume
                     p2p_conversations[conversation_tuple]['data_volume'] += len(pkt)

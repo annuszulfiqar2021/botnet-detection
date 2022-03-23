@@ -11,8 +11,8 @@ def build_and_train_dnn(args):
     #     dataset = pickle.load(handle)
     # tnx, tny = dataset["tnx"], dataset["tny"]
     # tsx, tsy = dataset["tsx"], dataset["tsy"]
-    training_set = get_tf_dataset(args["trainset"], args["features"], args["label"], args["batch_size"]) # here bs = 1, we will train #epoch times on it
-    eval_set = get_tf_dataset(args["evalset"], args["features"], args["label"], args["batch_size"]) # here bs = 1, we will train #epoch times on it
+    training_set = get_tf_dataset(args["trainset"], args["features"], args["label"], args["batch_size"], args["is_conversation"]) # here bs = 1, we will train #epoch times on it
+    eval_set = get_tf_dataset(args["evalset"], args["features"], args["label"], args["batch_size"], args["is_conversation"]) # here bs = 1, we will train #epoch times on it
     # print("TRAINING => FEATURES -> {0}, LABELS -> {1}".format(tnx.shape, tny.shape))
     # print("TEST => FEATURES -> {0}, LABELS -> {1}".format(tnx.shape, tny.shape))
     if os.path.exists(model_dir):
@@ -54,6 +54,7 @@ if __name__ == "__main__":
     CLI.add_argument("--trainset", type=str)
     CLI.add_argument("--evalset", type=str)
     CLI.add_argument("--features", nargs="*", type=str)
+    CLI.add_argument("--is_conversation", action='store_true')
     CLI.add_argument("--label", type=str)
     CLI.add_argument("--input_dim", type=int)
     CLI.add_argument("--output_dim", type=int)

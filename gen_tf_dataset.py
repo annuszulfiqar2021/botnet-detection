@@ -18,7 +18,7 @@ def show_batch(dataset):
     for key, value in batch.items():
       print("{:20s}: {}".format(key,value.numpy()))
 
-def batch_processor(features, labels):
+def packet_batch_processor(features, labels):
     """ https://www.tensorflow.org/tutorials/load_data/csv
     """
     # combine 4 ports into 2
@@ -35,7 +35,13 @@ def batch_processor(features, labels):
     # workaround https://stackoverflow.com/questions/65241790/how-to-efficiently-use-a-tf-data-dataset-made-of-ordereddict
     return (tf.stack([tf.cast(x, tf.float32) for x in features.values()], axis=1), labels)
 
-def get_tf_dataset(csvpath: str, fields, label_name, batch_size):
+def conversation_batch_processor(features, labels):
+    """ https://www.tensorflow.org/tutorials/load_data/csv
+    """
+    # workaround https://stackoverflow.com/questions/65241790/how-to-efficiently-use-a-tf-data-dataset-made-of-ordereddict
+    return (tf.stack([tf.cast(x, tf.float32) for x in features.values()], axis=1), labels)
+
+def get_tf_dataset(csvpath: str, fields, label_name, batch_size, is_conversation):
     """ https://www.tensorflow.org/api_docs/python/tf/data/experimental/make_csv_dataset
         https://www.tensorflow.org/guide/data
         https://colab.research.google.com/github/adammichaelwood/tf-docs/blob/csv-feature-columns/site/en/r2/tutorials/load_data/csv.ipynb#scrollTo=Q_nm28IzNDTO
@@ -47,8 +53,12 @@ def get_tf_dataset(csvpath: str, fields, label_name, batch_size):
                                                         num_epochs=1,
                                                         num_parallel_reads=20,
                                                         shuffle_buffer_size=10000)
-    # preprocess the entire batch
-    processed_packet_ds = packet_ds.map(batch_processor)
+    # preprocess the entire batch, only if data is packets
+    # don't do for conversations
+    if is_conversation:
+        processed_packet_ds = packet_ds.map(conversation_batch_processor)
+    else:
+        processed_packet_ds = packet_ds.map(packet_batch_processor)
     return processed_packet_ds
 
 def main(args):
