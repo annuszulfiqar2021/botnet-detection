@@ -62,8 +62,7 @@ export EPOCHS 				= 10
 
 # FlowLens variables
 export FLOWLENS_DIR			= FlowLens
-export FL_BOTNET_DIR		= "$(FLOWLENS_DIR)/Security Tasks Evaluation/BotnetAnalysis"
-export 
+export FL_BOTNET_DIR		= $(FLOWLENS_DIR)/SecurityTasksEvaluation/BotnetAnalysis
 
 .DEFAULT_GOAL = train-zeus-model
 
@@ -119,6 +118,11 @@ get-flow-statistics:
 # FlowLens targets
 flowlens-parse-pcaps:
 	python $(FL_BOTNET_DIR)/peershark/FilterPackets.py
+
+
+
+clean-flowlens-run:
+	-rm -rf $(FL_BOTNET_DIR)/classificationResults $(FL_BOTNET_DIR)/FeatureSets $(FL_BOTNET_DIR)/FlowData $(FL_BOTNET_DIR)/SuperFlowData $(FL_BOTNET_DIR)/TrainingData
 
 # clean-csv:
 # 	-rm -rf $(PROC_DATA_DIR)/*
