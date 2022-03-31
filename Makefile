@@ -1,70 +1,65 @@
 # user level variables
-export MC17_USER			= zulfiqaa
-export MC17_SERVER			= mc17.cs.purdue.edu
-export MC17_PASSWORD		= AZPCS0821
+export MC17_USER							= zulfiqaa
+export MC17_SERVER							= mc17.cs.purdue.edu
+export MC17_PASSWORD						= AZPCS0821
 
-# project variables
-export RAW_DATA_DIR 		= raw_dataset
-export BOTNETS_DIR 			= $(RAW_DATA_DIR)/botnets
-export P2P_PCAP_DIR 		= $(RAW_DATA_DIR)/p2p
-export P2P_FILES_TXT		= $(P2P_PCAP_DIR)/p2p_dataset.txt
-export PROC_DATA_DIR		= dataset
-export P2P_DOWNLOAD_TARGET	= download_p2p_dataset.py
-export DATASET_TARGET 		= process_dataset.py
-export TF_DATASET_TARGET 	= gen_tf_dataset.py
-export TRAIN_TARGET 		= train.py
-export FLOW_STATS_TARGET 	= get_flow_statistics.py
+# project variables			
+export RAW_DATA_DIR 						= raw_dataset
+export BOTNETS_DIR 							= $(RAW_DATA_DIR)/botnets
+export P2P_PCAP_DIR 						= $(RAW_DATA_DIR)/p2p
+export P2P_FILES_TXT						= $(P2P_PCAP_DIR)/p2p_dataset.txt
+export PROC_DATA_DIR						= dataset
+export P2P_DOWNLOAD_TARGET					= download_p2p_dataset.py
+export DATASET_TARGET 						= process_dataset.py
+export TF_DATASET_TARGET 					= gen_tf_dataset.py
+export TRAIN_TARGET 						= train.py
+export FLOW_STATS_TARGET 					= get_flow_statistics.py
 
-# data variables
-export STORM_PCAP_DIR 		= $(BOTNETS_DIR)/storm
-# export STORM_PCAP 		= $(BOTNETS_DIR)/storm/gtisc-winobot.20071027.1193479202.pcap
-# export STORM_CSV 			= $(PROC_DATA_DIR)/storm-unprocessed.csv
-export STORM_PKL 			= $(PROC_DATA_DIR)/storm-processed.pkl
+# data variables			
+export STORM_PCAP_DIR 						= $(BOTNETS_DIR)/storm
+export STORM_PKL 							= $(PROC_DATA_DIR)/storm-processed.pkl
 
-export WALEDAC_PCAP_DIR 	= $(BOTNETS_DIR)/waledac
-# export WALEDAC_PCAP 		= $(BOTNETS_DIR)/waledac/Waledac.br0.1.anonymous.pcap
-# export WALEDAC_CSV 		= $(PROC_DATA_DIR)/waledac-unprocessed.csv
-export WALEDAC_PKL 			= $(PROC_DATA_DIR)/waledac-processed.pkl
+export WALEDAC_PCAP_DIR 					= $(BOTNETS_DIR)/waledac
+export WALEDAC_PKL 							= $(PROC_DATA_DIR)/waledac-processed.pkl
 
-export ZEUS_PCAP_DIR 		= $(BOTNETS_DIR)/zeus
-# export ZEUS_PCAP 			= $(BOTNETS_DIR)/zeus/zeus1-1.pcap
-# export ZEUS_CSV 			= $(PROC_DATA_DIR)/zeus-unprocessed.csv
-export ZEUS_PKL 			= $(PROC_DATA_DIR)/zeus-processed.pkl
+export ZEUS_PCAP_DIR 						= $(BOTNETS_DIR)/zeus
+export ZEUS_PKL 							= $(PROC_DATA_DIR)/zeus-processed.pkl
 
-export P2P_REMOTE_DIR		= /homes/zulfiqaa/scratch/brett_dumps/
-export P2P_PCAP_COUNT 		= 10
+export P2P_REMOTE_DIR						= /homes/zulfiqaa/scratch/brett_dumps/
+export P2P_PCAP_COUNT 						= 10
 
-# dataset variables
-export NCLASS_SAMPLES 		= 1000000000000
-export TRAIN_TEST_SPLIT 	= 0.8
-export TRAIN_VAL_SPLIT 		= 0.8
+# dataset variables				
+export NCLASS_SAMPLES 						= 1000000000000
+export TRAIN_TEST_SPLIT 					= 0.8
+export TRAIN_VAL_SPLIT 						= 0.8
 
-# model and training variables
-export TRAIN_DATA_DIR		= $(PROC_DATA_DIR)/training
-export EVAL_DATA_DIR		= $(PROC_DATA_DIR)/evaluation
-export SPATIAL_DIR 			= spatial
-export MODELS_DIR 			= models
-export STORM_DNN_NAME 		= STORM_BOTNET
-export WALEDAC_DNN_NAME 	= WALEDAC_BOTNET
-export ZEUS_DNN_NAME 		= ZEUS_BOTNET
-export BOT_DNN_NAME			= BOTNET
-# export MODEL_FEATURES 	= ipv4_proto tcp_sport tcp_dport udp_sport udp_dport pkt_size inter_arrival_time isbotnet
-# ipv4_ihl ipv4_tos ipv4_len ipv4_id ipv4_flags ipv4_frag ipv4_ttl ipv4_proto ipv4_chksum ipv4_src ipv4_dst ipv4_options tcp_sport tcp_dport tcp_seq tcp_ack tcp_dataofs tcp_reserved tcp_flags tcp_window tcp_chksum tcp_urgptr tcp_options udp_sport udp_dport udp_len udp_chksum pkt_size inter_arrival_time isbotnet
-export MODEL_FEATURES 		= ipv4_ihl ipv4_tos ipv4_len ipv4_id ipv4_frag ipv4_ttl ipv4_proto ipv4_chksum tcp_sport tcp_dport tcp_dataofs tcp_reserved tcp_window tcp_chksum tcp_urgptr udp_sport udp_dport udp_len udp_chksum pkt_size inter_arrival_time isbotnet
-export DNN_ARCHITECTURE 	= 128 256 256 256 128 64
-export DNN_LAYER_PARS 		= 4 4 4 4 4 4
-export INPUT_DIM 			= 19
-export N_CLASSES 			= 2
-export OUTPUT_DIM			= 1
-export METRIC 				= f1
-export BATCH_SIZE 			= 128
-export EPOCHS 				= 10
+# model and training variables			
+export TRAIN_DATA_DIR						= $(PROC_DATA_DIR)/training
+export EVAL_DATA_DIR						= $(PROC_DATA_DIR)/evaluation
+export SPATIAL_DIR 							= spatial
+export MODELS_DIR 							= models
+export STORM_DNN_NAME 						= STORM_BOTNET
+export WALEDAC_DNN_NAME 					= WALEDAC_BOTNET
+export ZEUS_DNN_NAME 						= ZEUS_BOTNET
+export BOT_DNN_NAME							= BOTNET
+export MODEL_FEATURES 						= ipv4_ihl ipv4_tos ipv4_len ipv4_id ipv4_frag ipv4_ttl ipv4_proto ipv4_chksum tcp_sport tcp_dport tcp_dataofs tcp_reserved tcp_window tcp_chksum tcp_urgptr udp_sport udp_dport udp_len udp_chksum pkt_size inter_arrival_time isbotnet
+export DNN_ARCHITECTURE 					= 128 256 256 256 128 64
+export DNN_LAYER_PARS 						= 4 4 4 4 4 4
+export INPUT_DIM 							= 19
+export N_CLASSES 							= 2
+export OUTPUT_DIM							= 1
+export METRIC 								= f1
+export BATCH_SIZE 							= 128
+export EPOCHS 								= 10
 
 # FlowLens variables
-export FLOWLENS_DIR			= FlowLens
-export FL_BOTNET_DIR		= $(FLOWLENS_DIR)/SecurityTasksEvaluation/BotnetAnalysis
+export FLOWLENS_DIR							= $(PWD)/FlowLens
+export FLOWLENS_BOTNET_DIR					= $(FLOWLENS_DIR)/SecurityTasksEvaluation/BotnetAnalysis
+export FLOWLENS_BOTNET_PARSED_DATASET 		= $(FLOWLENS_BOTNET_DIR)/Data
+export FLOWLENS_BOTNET_EXPERIMENTS_PYTHON 	= $(FLOWLENS_BOTNET_DIR)/runExperiment.py
+export FLOWLENS_BOTNET_EXPERIMENTS_SCRIPT 	= $(FLOWLENS_BOTNET_DIR)/run_experiments.sh
 
-.DEFAULT_GOAL = train-zeus-model
+.DEFAULT_GOAL = training
 
 $(PROC_DATA_DIR):
 	@echo "[LOG] Creating DATASET Directory => $(PROC_DATA_DIR)"
@@ -117,12 +112,13 @@ get-flow-statistics:
 
 # FlowLens targets
 flowlens-parse-pcaps:
-	python $(FL_BOTNET_DIR)/peershark/FilterPackets.py
+	python $(FLOWLENS_BOTNET_DIR)/peershark/FilterPackets.py
 
-
+flowlens-botnet-experiment:
+	$(FLOWLENS_BOTNET_EXPERIMENTS_SCRIPT) $(FLOWLENS_BOTNET_EXPERIMENTS_PYTHON) $(FLOWLENS_BOTNET_DIR)
 
 clean-flowlens-run:
-	-rm -rf $(FL_BOTNET_DIR)/classificationResults $(FL_BOTNET_DIR)/FeatureSets $(FL_BOTNET_DIR)/FlowData $(FL_BOTNET_DIR)/SuperFlowData $(FL_BOTNET_DIR)/TrainingData
+	-rm -rf $(FLOWLENS_BOTNET_DIR)/classificationResults $(FLOWLENS_BOTNET_DIR)/FeatureSets $(FLOWLENS_BOTNET_DIR)/PerPacketHistograms $(FLOWLENS_BOTNET_DIR)/FlowData $(FLOWLENS_BOTNET_DIR)/SuperFlowData $(FLOWLENS_BOTNET_DIR)/TrainingData
 
 # clean-csv:
 # 	-rm -rf $(PROC_DATA_DIR)/*
