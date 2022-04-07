@@ -58,6 +58,8 @@ export FLOWLENS_BOTNET_DIR					= $(FLOWLENS_DIR)/SecurityTasksEvaluation/BotnetA
 export FLOWLENS_BOTNET_PARSED_DATASET 		= $(FLOWLENS_BOTNET_DIR)/Data
 export FLOWLENS_BOTNET_EXPERIMENTS_PYTHON 	= $(FLOWLENS_BOTNET_DIR)/runExperiment.py
 export FLOWLENS_BOTNET_EXPERIMENTS_SCRIPT 	= $(FLOWLENS_BOTNET_DIR)/run_experiments.sh
+export FLOWLENS_BOTNET_EXPERIMENTS_GET_F1	= $(FLOWLENS_BOTNET_DIR)/calculate_F1.py
+
 
 .DEFAULT_GOAL = training
 
@@ -119,6 +121,9 @@ flowlens-botnet-experiment:
 
 clean-flowlens-run:
 	-rm -rf $(FLOWLENS_BOTNET_DIR)/classificationResults $(FLOWLENS_BOTNET_DIR)/FeatureSets $(FLOWLENS_BOTNET_DIR)/PerPacketHistograms $(FLOWLENS_BOTNET_DIR)/FlowData $(FLOWLENS_BOTNET_DIR)/SuperFlowData $(FLOWLENS_BOTNET_DIR)/TrainingData
+
+show-f1-scores:
+	python $(FLOWLENS_BOTNET_EXPERIMENTS_GET_F1)
 
 # clean-csv:
 # 	-rm -rf $(PROC_DATA_DIR)/*
