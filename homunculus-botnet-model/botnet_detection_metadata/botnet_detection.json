@@ -1,0 +1,46 @@
+{
+    "platform name": "testbed",
+    "resources": {
+        "rows": 20,
+        "cols": 20,
+        "preMATs": "UNDEFINED",
+        "postMATs": "UNDEFINED",
+        "grid_pattern": "UNDEFINED"
+    },
+    "constraints": {
+        "throughput": 1,
+        "throughput_unit": "GigaPkts/sec",
+        "latency": "UNDEFINED",
+        "latency_unit": "nanoseconds"
+    },
+    "models": {
+        "test_botnet_detection": {
+            "optimization_metric": "UNDEFINED",
+            "input_map": "UNDEFINED",
+            "output_map": "UNDEFINED",
+            "algorithm": [
+                "dnn"
+            ],
+            "external_model": "UNDEFINED",
+            "data_loader": "wrapper_func",
+            "config": {
+                "dnn": {
+                    "iterations": 100,
+                    "rs": 10,
+                    "evals_per_iter": 1
+                }
+            }
+        }
+    },
+    "schedule": {
+        "directed": true,
+        "multigraph": false,
+        "graph": {},
+        "nodes": [
+            {
+                "id": "test_botnet_detection"
+            }
+        ],
+        "links": []
+    }
+}

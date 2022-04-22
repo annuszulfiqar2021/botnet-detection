@@ -1,0 +1,122 @@
+{
+    "application_name": "test_botnet_detection_dnn",
+    "optimization_objectives": [
+        "accuracy"
+    ],
+    "optimization_iterations": 100,
+    "resume_optimization": false,
+    "resume_optimization_data": "/home/tushar/homunculus-compiler/anomaly_detection_dnn_output_samples.csv",
+    "evaluations_per_optimization_iteration": 1,
+    "input_parameters": {
+        "layers": {
+            "parameter_type": "integer",
+            "values": [
+                1,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_1": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_2": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_3": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_4": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_5": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_6": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_7": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_8": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_9": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "neurons_layers_10": {
+            "parameter_type": "integer",
+            "values": [
+                0,
+                10
+            ],
+            "parameter_default": 5
+        },
+        "batch_size": {
+            "parameter_type": "ordinal",
+            "values": [
+                64,
+                128,
+                256
+            ],
+            "parameter_default": 256
+        }
+    },
+    "hypermapper_mode": {
+        "mode": "client-server"
+    },
+    "design_of_experiment": {
+        "doe_type": "random sampling",
+        "number_of_samples": 10
+    },
+    "feasible_output": {
+        "enable_feasible_predictor": true,
+        "name": "Valid",
+        "true_value": "True",
+        "false_value": "False"
+    }
+}

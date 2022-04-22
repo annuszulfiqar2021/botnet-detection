@@ -1,0 +1,5 @@
+{
+    "iterations": 100,
+    "rs": 10,
+    "evals_per_iter": 1 
+}
